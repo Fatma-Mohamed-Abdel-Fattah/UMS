@@ -1,0 +1,17 @@
+.loginContainer {
+   background: linear-gradient(to right ,rgba(254,174,0,0.8),rgba(254,174,0,0.6));
+}
+.loginContainer h3 {
+   position: relative;
+   margin-left: 10px;
+}
+.loginContainer h3::before {
+    content: "";
+    position: absolute;
+    top:0;
+    right: calc(100% + 10px);
+    width: 6px;
+    height: 35px;
+    background-color:#f8d442;
+    /* margin-right: 10px; */
+}

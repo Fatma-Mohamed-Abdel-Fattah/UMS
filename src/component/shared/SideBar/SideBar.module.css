@@ -1,0 +1,25 @@
+.sidebarContainer {
+   background-color: bisque;
+}
+.sidebarContainer  .menuItem:hover {
+   background-color:rgba(254, 175, 0, 1) !important;
+}
+.imgContainer {
+   width: 100px;
+   height: 100px;
+   margin:auto;
+}
+.profileImage {
+   width: 80%;
+   height: 80%;
+   object-fit: cover;
+   border-radius: 50%;
+   display:block;
+   -webkit-border-radius: 50%;
+   -moz-border-radius: 50%;
+   -ms-border-radius: 50%;
+   -o-border-radius: 50%;
+}
+h6 {
+   color:rgba(254, 175, 0, 1);
+}
