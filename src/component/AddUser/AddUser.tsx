@@ -38,17 +38,22 @@ useEffect(()=>{
   }
 },[isEdit, reset])
 let onSubmittedToUpdate=async(data:addUserFormInput)=>{
+  try{
   if(isEdit){
-  let response=await axios.put(`https://dummyjson.com/users/${userData.id}`,data)
+   await axios.put(`https://dummyjson.com/users/${userData.id}`,data)
   toast.success("User updated successfully!");
   // navigate("/dashbord/user-list");
 
   }
   else {
-        let response=await axios.post('https://dummyjson.com/users/add',data)
+        await axios.post('https://dummyjson.com/users/add',data)
   }
    navigate("/dashbord/user-list");
-
+  }
+  catch(error){
+    console.log(error)
+    toast.error("something went wrong!");
+  }
 }
 
   return (
@@ -129,7 +134,7 @@ let onSubmittedToUpdate=async(data:addUserFormInput)=>{
             </div>
         </div>
       </div>
-      <div className='text-center'><button type="onSubmit" className="btn btn-warning text-white mt-2 w-50" >{isEdit ? "Update User" : "Add User"}</button>
+      <div className='text-center'><button type="submit" className="btn btn-warning text-white mt-2 w-50" >{isEdit ? "Update User" : "Add User"}</button>
         
 
       </div>
