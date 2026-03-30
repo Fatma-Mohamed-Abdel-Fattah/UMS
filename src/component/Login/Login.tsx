@@ -4,29 +4,41 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 interface loginFormInput {
    username: string;
    password: string;
 }
+interface AuthContextType {
+   saveUserData: () => void;
+}
+/**
+ * 登录组件
+ * 用于用户登录功能，包含表单验证、提交处理和错误处理
+ */
 export default function Login() {
+   // use context
+   let { saveUserData } = useContext(AuthContext) as AuthContextType;
+   // 使用react-hook-form进行表单管理
    const {
       register,
       handleSubmit,
       formState: { errors }
    } = useForm<loginFormInput>();
-const navigate=useNavigate();
-   const onSubmit = async(data: loginFormInput) => {
+   const navigate = useNavigate();
+   const onSubmit = async (data: loginFormInput) => {
       try {
-         const response=await axios.post('https://dummyjson.com/auth/login',data)
-         console.log(response.data);
+         const response = await axios.post("https://dummyjson.com/auth/login", data);
+         localStorage.setItem("userToken", response?.data?.accessToken);
+         saveUserData();
          toast.success("wow logged successfully!");
-         navigate('/dashbord')
-      } 
-      catch (error) {
-         console.log(error)
+         navigate("/dashbord");
+      } catch (error) {
+         console.log(error);
          toast.error("something went wrong!");
-      };
       }
+   };
    return (
       <>
          <div className={styles.loginContainer}>
@@ -53,7 +65,7 @@ const navigate=useNavigate();
                               className="form-control mb-2"
                               type="password"
                               placeholder="enter password"
-                              {...register("password", { required: "password is required"})}
+                              {...register("password", { required: "password is required" })}
                            />
                            {errors.password && <span className="text-danger">{errors.password.message}</span>}
                            <button className="btn btn-warning w-100 text-whit my-2">login</button>

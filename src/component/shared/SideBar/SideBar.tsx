@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Menu, MenuItem, Sidebar } from "react-pro-sidebar";
 import { Link } from "react-router-dom";
 import styles from './SideBar.module.css'
@@ -6,10 +6,21 @@ import { FaHome, FaUsers } from "react-icons/fa";
 import { RiProfileLine } from "react-icons/ri";
 import { MdOutlinePersonAddAlt1 } from "react-icons/md";
 import { LuLogOut } from "react-icons/lu";
-import profile from "../../../assets/images/profile.jpg";
+// import profile from "../../../assets/images/profile.jpg";
 import { GoSidebarCollapse } from "react-icons/go";
 import { TbLayoutSidebarLeftCollapse } from "react-icons/tb";
+import { AuthContext } from "../../context/AuthContext";
 export default function SideBar() {
+   interface UserData{
+      firstName:string,
+      email:string,
+      image:string,
+   }
+   interface AuthContextType{
+      userData:UserData | null
+   }
+
+   let {userData}=useContext(AuthContext) as AuthContextType;
    const [collapse,setCollapse]=useState(false);
    const toggleCollapse=()=>{
       setCollapse(!collapse)
@@ -22,10 +33,10 @@ export default function SideBar() {
                {collapse ? <GoSidebarCollapse onClick={toggleCollapse} size={25} className="m-3"/>:<TbLayoutSidebarLeftCollapse  onClick={toggleCollapse} size={25} className="m-3"  />}
                <div className="text-center mb-3">
                   <div className={`my-2 ${styles.imgContainer}`}>
-                     <img src={profile} alt="profile" className={styles.profileImage} />
+                     <img src={userData?.image} alt="profile" className={styles.profileImage} />
                   </div>
                   
-               <h5>Karthi Madesh</h5>
+               <h5>{userData?.firstName}</h5>
                <h6>Admin</h6>
                </div>
                <Menu  >
