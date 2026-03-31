@@ -1,4 +1,3 @@
-
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { createContext, useEffect, useState, type ReactNode } from "react";
@@ -14,6 +13,7 @@ interface User{
 interface AuthContextType {
 userData:User | null;
   saveUserData:()=>void;
+  logout:()=>void;
 
 }
 interface AuthContextProviderProps{
@@ -44,7 +44,11 @@ export default function AuthContextProvider({children}:AuthContextProviderProps)
       saveUserData()
    }
 },[])
+let logout=()=> {
+   localStorage.removeItem("userToken");
+   setUserData(null)
+}
    return (
-   <AuthContext.Provider value={{userData,saveUserData}}>{children}</AuthContext.Provider>)
+   <AuthContext.Provider value={{userData,saveUserData,logout}}>{children}</AuthContext.Provider>)
 
 }

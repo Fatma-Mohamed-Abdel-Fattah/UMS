@@ -13,14 +13,11 @@ interface loginFormInput {
 interface AuthContextType {
    saveUserData: () => void;
 }
-/**
- * 登录组件
- * 用于用户登录功能，包含表单验证、提交处理和错误处理
- */
+
 export default function Login() {
    // use context
    let { saveUserData } = useContext(AuthContext) as AuthContextType;
-   // 使用react-hook-form进行表单管理
+
    const {
       register,
       handleSubmit,

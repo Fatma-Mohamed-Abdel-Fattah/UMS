@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { Menu, MenuItem, Sidebar } from "react-pro-sidebar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from './SideBar.module.css'
 import { FaHome, FaUsers } from "react-icons/fa";
 import { RiProfileLine } from "react-icons/ri";
@@ -9,17 +9,27 @@ import { LuLogOut } from "react-icons/lu";
 import { GoSidebarCollapse } from "react-icons/go";
 import { TbLayoutSidebarLeftCollapse } from "react-icons/tb";
 import { AuthContext } from "../../context/AuthContext";
-export default function SideBar() {
-   interface UserData{
+// interface AuthContextType {
+//   logout:()=>void;
+// }
+interface UserData{
       firstName:string,
       email:string,
       image:string,
    }
    interface AuthContextType{
-      userData:UserData | null
+      userData:UserData | null;
+      logout:()=>void;
    }
 
-   let {userData}=useContext(AuthContext) as AuthContextType;
+export default function SideBar() {
+   let navigate=useNavigate();
+   
+   let handleLogOut=()=>{
+      logout();
+      navigate('/login')
+   }
+   let {userData,logout}=useContext(AuthContext) as AuthContextType;
    const [collapse,setCollapse]=useState(false);
    const toggleCollapse=()=>{
       setCollapse(!collapse)
@@ -43,7 +53,7 @@ export default function SideBar() {
                   <MenuItem icon={ <FaUsers />} component={<Link to="/dashbord/user-list" className={styles.menuItem} />}> Users</MenuItem>
                   <MenuItem icon={<MdOutlinePersonAddAlt1 />}  component={<Link to="/dashbord/add-user" className={styles.menuItem} />}> Add user</MenuItem>
                   <MenuItem icon={<RiProfileLine />} component={<Link to="/dashbord/profile" className={styles.menuItem} />}>Profile</MenuItem>
-                  <MenuItem  icon={<LuLogOut />} className={styles.menuItem} > Logout</MenuItem>
+                  <MenuItem  icon={<LuLogOut />} className={styles.menuItem} onClick={handleLogOut}> Logout</MenuItem>
                </Menu>
             </Sidebar>
          </div>

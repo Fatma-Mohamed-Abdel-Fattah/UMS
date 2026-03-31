@@ -11,6 +11,7 @@ interface User {
    birthDate: string;
    image: string;
 }
+
 interface AuthContextType {
    userData: User | null;
 }
