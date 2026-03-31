@@ -6,7 +6,6 @@ import { FaHome, FaUsers } from "react-icons/fa";
 import { RiProfileLine } from "react-icons/ri";
 import { MdOutlinePersonAddAlt1 } from "react-icons/md";
 import { LuLogOut } from "react-icons/lu";
-// import profile from "../../../assets/images/profile.jpg";
 import { GoSidebarCollapse } from "react-icons/go";
 import { TbLayoutSidebarLeftCollapse } from "react-icons/tb";
 import { AuthContext } from "../../context/AuthContext";
