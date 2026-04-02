@@ -24,7 +24,7 @@ export default function Profile() {
          <div className="mx-3">
             <h4>Profile</h4>
             <hr />
-            <form className={`shadow-lg rounded-2 m-5 p-4 ${styles.profileForm}`}>
+            <form className={`shadow-lg rounded-2 p-4 ${styles.profileForm}`}>
               <div className={styles.imageontainer}>
                 <img src={userData?.image } className="w-50 rounded-circle" alt="profileImg" />
               </div>

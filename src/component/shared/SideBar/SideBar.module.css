@@ -1,9 +1,15 @@
 .sidebarContainer {
    background-color: bisque;
+   height:100vh !important;
+   overflow: hidden !important;
+    display: flex;
+  flex-direction: column;
 }
 .sidebarContainer  .menuItem:hover {
    background-color:rgba(254, 175, 0, 1) !important;
+   
 }
+
 .imgContainer {
    width: 100px;
    height: 100px;

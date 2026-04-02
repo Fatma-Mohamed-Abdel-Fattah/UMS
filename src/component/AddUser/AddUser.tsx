@@ -5,12 +5,12 @@ import { useForm } from 'react-hook-form'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 interface addUserFormInput{
-  firstName:string,
-  lastName:string,
-  email:string,
-  age:number,
-  phone:string,
-  birthDate:Date,
+  firstName:string;
+  lastName:string;
+  email:string;
+  age:string;
+  phone:string;
+  birthDate:string;
 }
 
 export default function AddUser() {
@@ -63,7 +63,7 @@ let onSubmittedToUpdate=async(data:addUserFormInput)=>{
     <div className=" mx-3">
       <h4>User List</h4>
     <hr/>
-    <form onSubmit={handleSubmit(onSubmittedToUpdate)} className="shadow-lg rounded-2 m-5 p-4" >
+    <form onSubmit={handleSubmit(onSubmittedToUpdate)} className="shadow-lg rounded-2  p-4" >
       <div className="row">
         <div className="col-md-6">
            
